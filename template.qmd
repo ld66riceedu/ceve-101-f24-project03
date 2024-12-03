@@ -50,7 +50,7 @@ plot(rainfall_data) # <1>
 
 ### Discussion
 
-*Insert discussion here*
+The data is sufficient for meaningful risk assesments.This storage tank dd not run out of water. Although it got low during a drought from aout June to December, but got some rain at the end of the year to keep the storage tank with some liquid in it. According to my research, the years of droughts in Ceara, Brazil include 1915, 1931, 1973, 1983, 1993, and 1998. The data shows droughts for the years after 1973 listed previously-1983,1993,1998-. The rainfall totals are drastically lower on the drought year's max and average rainfall.
 
 ## Understanding the Theoretical Model
 
