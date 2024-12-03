@@ -54,50 +54,14 @@ The data is sufficient for meaningful risk assesments.This storage tank dd not r
 
 ## Understanding the Theoretical Model
 
-Let's explore the model that simulates the rainwater harvesting system.
 
-### Mass Balance Equation
 
-The mass balance model for the rainwater tank is given by:
-
-$$
-V_{t+1} = V_t + Q_t - C_t | 0 \leq V_t \leq V_\text{max}
-$$
-
-- $V_t$: the volume of water in the tank at time $t$
-- $Q_t$ is the volume of water added to the tank at time $t$
-- $C_t$ is the volume of water consumed at time $t$
-- $V_\text{max}$: the maximum volume of the tank
-
-### Inflow ($Q_t$)
-
-Inflow is calculated as
-
-$$
-Q_t = \eta \times A \times \max(P_t - F, 0).
-$$
-
-- $\eta$: the runoff coefficient, which accounts for losses due to evaporation, spilling, etc.
-- $A$: the area of the roof (we will use square meters)
-- $P_t$: the precipitation at time $t$ (we will use millimeters per day)
-- $F$: the first flush volume (we will use millimeters). The first flush volume is often discarded, so that each time it rains the first bit of water (which is usually dirty) is not used (see [here](https://rainwaterharvesting.tamu.edu/pre-storage-treatment/) for more details).
-
-### Consumption
-
-Consumption is modeled as:
-
-$$
-C_t = \begin{cases}
-    74.1 & \quad \text{day of year} > 150 \\
-    0 & \quad \text{day of year} \leq 150
-\end{cases}
-$$
-
-This makes two major assumptiuons.
+This model makes two major assumptiuons.
 First, the household begins using water from the tank after the 150th day of the year.
 This is based on the idea that the rainy season lasts for about the first 150 days of the year, and so they may have other sources of water before then.
 The second assumption is that each household consumes 74.1 liters per day during the dry season.
 How does this compare to your household's water usage?
+I feel that my family most likely uses more water per day than these households. Firstly, we get a bunch of rain in houston and have many lakes so droughts do not affect us as much. Secondly, we do not collect rain water and do not face water shortage problems, so we are more comfortable using extra water without even giving it a second thought. We are not using from a limited supply, and if we are and I am unaware we have never ran out.
 
 ## Model Implementation and Testing
 
