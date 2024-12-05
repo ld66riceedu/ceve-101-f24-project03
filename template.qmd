@@ -18,8 +18,6 @@ using Revise                      # <1>
 using RainwaterHarvesting         # <2>
 ```
 
-1. `Revise` allows us to update code without restarting Julia.
-2. We load the `RainwaterHarvesting` package that contains our simulation tools.
 
 ### Setting the file path
 
@@ -30,13 +28,6 @@ filepath = "data/71.txt" # <1>
 rainfall_data = RainfallData(filepath) # <2>
 ```
 
-1. This is the path to the rainfall data file for the station of interest.
-2. This creates a `RainfallData` object containing the rainfall data for the specified station.
-
-If we dig under the hood a bit, we can see that there are two main pieces of information:
-
-- `station_info`: a dictionary containing information about the station, such as its name and location.
-- `annual_data`: a dictionary mapping years to `AnnualRainfallData` objects, each containing the date and precipitation data for a given year.
 
 ### Plotting the Data
 
@@ -46,7 +37,7 @@ We can plot the data for one or all of the years to verify that it looks correct
 plot(rainfall_data) # <1>
 ```
 
-1. This `plot` function is defined in [viz.jl](./RainwaterHarvesting/src/viz.jl) and is a thin wrapper around the Plots.jl package.
+1. 
 
 ### Discussion
 
@@ -96,9 +87,7 @@ results_1981 = run_timesteps(rainfall_1981, param) # <2>
 p1 = plot(results_1981)                                 # <3>
 ```
 
-1. We select the annual rainfall data for the year 1981.
-2. We run the simulation for the year 1981.
-3. We plot the results, again using a `plot` function defined in [viz.jl](./RainwaterHarvesting/src/viz.jl).
+
 
 To compare rainfall and tank volume:
 
@@ -107,12 +96,11 @@ p2 = plot(rainfall_1981)
 plot(p2, p1, layout=(2, 1), size=(1000, 700), link=:x)
 ```
 
-With the modified parameters, I created a scenario of buying a new - bigger - house. The roof was modified fron 45m -> 60m. The data shows that the tank reached max capacity about two months earlier. Since the tank was not upgraded with the roof in the new house. The tank ran out at about the same timedue to the fixed amount of drinking after the rainy season. If I were to create a scenario where the tank was replaced with a larger volume tank, the family will be able to collect extra water and may become empty later or not at all if the tank is large enough and enough rain falls on that year.
+With the modified parameters, I created a scenario of buying a new - bigger - house. The roof was modified fron 45m -> 60m. The data shows that the tank reached max capacity about two months earlier. 
 
 ### Reliability Analysis
 
-We can run simulations for all years, one at a time, and then check how many times the tank runs dry.
-You can run simulations for all years at once with the following code:
+
 
 ```{julia}
 all_years = sort(collect(keys(rainfall_data.annual_data)))          # <1>
@@ -121,10 +109,7 @@ any_failures = [!isempty(result.failure_dates) for result in all_results]  # <3>
 println("Number of years with failures: ", sum(any_failures), " out of ", length(all_years))  # <4>
 ```
 
-1. We get all the years in order.
-2. We run the simulation for each year.
-3. We check if any failures occurred.
-4. We print the number of years with failures and the total number of years.
 
 Number of years with failures: 10 out of 49.
 I believe the years of failure are years with higher amounts of daily rainfall. There are exactly 10 places - years - on the graph above 10mm of daily rainfall. These could bethe years that the tank failed or overflowed.
+ Gap: Since the tank was not upgraded with the roof in the new house. The tank ran out at about the same timedue to the fixed amount of drinking after the rainy season. If I were to create a scenario where the tank was replaced with a larger volume tank, the family will be able to collect extra water and may become empty later or not at all if the tank is large enough and enough rain falls on that year.
