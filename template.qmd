@@ -74,7 +74,7 @@ You will have the opportunity to change these values later.
 #| output: false
 param = ModelParameters(          # <1>
     runoff_coefficient=0.85,      # <2>
-    roof_area_m2=45.0,            # <3>
+    roof_area_m2=60.0,            # <3>
     first_flush_mm=2.0,           # <4>
     tank_capacity_L=16000.0       # <5>
 )
@@ -107,8 +107,7 @@ p2 = plot(rainfall_1981)
 plot(p2, p1, layout=(2, 1), size=(1000, 700), link=:x)
 ```
 
-Observe how the tank's water level responds to rainfall events.
-Note any periods when the tank runs dry or overflows.
+With the modified parameters, I created a scenario of buying a new - bigger - house. The roof was modified fron 45m -> 60m. The data shows that the tank reached max capacity about two months earlier. Since the tank was not upgraded with the roof in the new house. The tank ran out at about the same timedue to the fixed amount of drinking after the rainy season. If I were to create a scenario where the tank was replaced with a larger volume tank, the family will be able to collect extra water and may become empty later or not at all if the tank is large enough and enough rain falls on that year.
 
 ### Reliability Analysis
 
@@ -126,3 +125,6 @@ println("Number of years with failures: ", sum(any_failures), " out of ", length
 2. We run the simulation for each year.
 3. We check if any failures occurred.
 4. We print the number of years with failures and the total number of years.
+
+Number of years with failures: 10 out of 49.
+I believe the years of failure are years with higher amounts of daily rainfall. There are exactly 10 places - years - on the graph above 10mm of daily rainfall. These could bethe years that the tank failed or overflowed.
